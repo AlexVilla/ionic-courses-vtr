@@ -76,6 +76,7 @@ angular.module('univtr')
             if($scope.projects.length == 0) {
                 while(true) {
                     navigator.notification.prompt('Your first project title:', createProject());
+                    break;
                 }
             }
         }, 1000);
