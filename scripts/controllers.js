@@ -24,10 +24,7 @@ angular.module('univtr')
 
         // Called to create a new project
         $scope.newProject = function() {
-            var projectTitle = prompt('Project name');
-            if(projectTitle) {
-                createProject(projectTitle);
-            }
+            navigator.notification.prompt('Your first project title:', createProject), 'Create Project', ['Done'];
         };
 
         // Called to select the given project
