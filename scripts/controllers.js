@@ -4,7 +4,11 @@ angular.module('univtr')
 
         // A utility function for creating a new project
         // with the given projectTitle
-        var createProject = function(projectTitle) {
+        var createProject = function(results) {
+            projectTitle = results.input1;
+            console.log("asdasda");
+            console.log(projectTitle);
+            console.log(results);
             var newProject = Projects.newProject(projectTitle);
             $scope.projects.push(newProject);
             Projects.save($scope.projects);
@@ -40,11 +44,8 @@ angular.module('univtr')
             scope: $scope
         });
 
-        $scope.createTask = function(results) {
-            task = results.input1;
-            console.log("asdasda");
-            console.log(task);
-            console.log(results);
+        $scope.createTask = function(task) {
+
             if(!$scope.activeProject || !task) {
                 return;
             }
@@ -77,10 +78,7 @@ angular.module('univtr')
         // properly
         $timeout(function() {
             if($scope.projects.length == 0) {
-                while(true) {
-                    navigator.notification.prompt('Your first project title:', createProject), 'Create First Task', ['Done'];
-                    break;
-                }
+                navigator.notification.prompt('Your first project title:', createProject), 'Create Project', ['Done'];
             }
         }, 1000);
 
