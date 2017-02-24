@@ -40,7 +40,8 @@ angular.module('univtr')
             scope: $scope
         });
 
-        $scope.createTask = function(task) {
+        $scope.createTask = function(results) {
+            task = results.input1;
             if(!$scope.activeProject || !task) {
                 return;
             }
@@ -74,11 +75,7 @@ angular.module('univtr')
         $timeout(function() {
             if($scope.projects.length == 0) {
                 while(true) {
-                    var projectTitle = prompt('Your first project title:');
-                    if(projectTitle) {
-                        createProject(projectTitle);
-                        break;
-                    }
+                    navigator.notification.prompt('Your first project title:', createProject());
                 }
             }
         }, 1000);
