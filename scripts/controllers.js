@@ -42,6 +42,7 @@ angular.module('univtr')
 
         $scope.createTask = function(results) {
             task = results.input1;
+            console.log(task);
             if(!$scope.activeProject || !task) {
                 return;
             }
