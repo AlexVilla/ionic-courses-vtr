@@ -42,7 +42,9 @@ angular.module('univtr')
 
         $scope.createTask = function(results) {
             task = results.input1;
+            console.log("asdasda");
             console.log(task);
+            console.log(results);
             if(!$scope.activeProject || !task) {
                 return;
             }
@@ -76,7 +78,7 @@ angular.module('univtr')
         $timeout(function() {
             if($scope.projects.length == 0) {
                 while(true) {
-                    navigator.notification.prompt('Your first project title:', createProject());
+                    navigator.notification.prompt('Your first project title:', createProject), 'Create First Task', ['Done'];
                     break;
                 }
             }
