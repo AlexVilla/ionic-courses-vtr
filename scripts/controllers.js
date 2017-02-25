@@ -6,9 +6,6 @@ angular.module('univtr')
         // with the given projectTitle
         var createProject = function(results) {
             projectTitle = results.input1;
-            console.log("asdasda");
-            console.log(projectTitle);
-            console.log(results);
             var newProject = Projects.newProject(projectTitle);
             $scope.projects.push(newProject);
             Projects.save($scope.projects);
