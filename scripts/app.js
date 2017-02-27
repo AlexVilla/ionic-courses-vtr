@@ -1,1 +1,2 @@
-angular.module('univtr', ['ionic']);
+'use strict';
+angular.module('univtr', ['ionic'])

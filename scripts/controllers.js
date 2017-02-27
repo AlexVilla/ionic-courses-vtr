@@ -1,79 +1,18 @@
+'use strict';
 angular.module('univtr')
 
-    .controller('VtrCtrl', function($scope, $timeout, $ionicModal, Projects, $ionicSideMenuDelegate) {
+    .controller('VtrCtrl', ['$scope', 'cursos', function($scope, $timeout, $ionicModal, cursos, $ionicSideMenuDelegate) {
 
-        // A utility function for creating a new project
-        // with the given projectTitle
-        var createProject = function(results) {
-            projectTitle = results.input1;
-            var newProject = Projects.newProject(projectTitle);
-            $scope.projects.push(newProject);
-            Projects.save($scope.projects);
-            $scope.selectProject(newProject, $scope.projects.length-1);
-        };
+        //obtener todos los cursos
+        $scope.cursos = cursos.getCourses();
 
+        //obtener todas las clases de un curso determinado (programa del curso)
+        $scope.program= cursos.getProgram(id);
 
-        // Load or initialize projects
-        $scope.projects = Projects.all();
+        //obtener el detalle del curso, acceso al video incluido
+        $scope.class = cursos.getClases(id, video);
 
-        // Grab the last active, or the first project
-        $scope.activeProject = $scope.projects[Projects.getLastActiveIndex()];
-
-        // Called to create a new project
-        $scope.newProject = function() {
-            navigator.notification.prompt('Your first project title:', createProject), 'Create Project', ['Done'];
-        };
-
-        // Called to select the given project
-        $scope.selectProject = function(project, index) {
-            $scope.activeProject = project;
-            Projects.setLastActiveIndex(index);
-            $ionicSideMenuDelegate.toggleLeft(false);
-        };
-
-        // Create our modal
-        $ionicModal.fromTemplateUrl('new-task.html', function(modal) {
-            $scope.taskModal = modal;
-        }, {
-            scope: $scope
-        });
-
-        $scope.createTask = function(task) {
-
-            if(!$scope.activeProject || !task) {
-                return;
-            }
-            $scope.activeProject.tasks.push({
-                title: task.title
-            });
-            $scope.taskModal.hide();
-
-            // Inefficient, but save all the projects
-            Projects.save($scope.projects);
-
-            task.title = "";
-        };
-
-        $scope.newTask = function() {
-            $scope.taskModal.show();
-        };
-
-        $scope.closeNewTask = function() {
-            $scope.taskModal.hide();
-        }
-
-        $scope.toggleProjects = function() {
+        $scope.toggleCursos = function() {
             $ionicSideMenuDelegate.toggleLeft();
         };
-
-
-        // Try to create the first project, make sure to defer
-        // this by using $timeout so everything is initialized
-        // properly
-        $timeout(function() {
-            if($scope.projects.length == 0) {
-                navigator.notification.prompt('Your first project title:', createProject), 'Create Project', ['Done'];
-            }
-        }, 1000);
-
-    })
+    }])
