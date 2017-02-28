@@ -1,0 +1,16 @@
+<ion-header-bar class="bar-dark">
+    <button class="button button-icon" ng-click="toggleMenu()">
+        <i class="icon ion-navicon"></i>
+    </button>
+    <h1 class="title">{{program.name}}</h1>
+    <!-- New Task button-->
+</ion-header-bar>
+<ion-content>
+    <ion-list>
+        <ion-item ng-repeat="class in program.videos" class="item item-thumbnail-left" ui-sref="app.program.class({program: program._id, id: class._id})">
+            <img ng-src="{{class.image}}">
+            <h2>{{class.title}}</h2>
+            <p>{{class.description}}</p>
+        </ion-item>
+    </ion-list>
+</ion-content>

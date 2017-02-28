@@ -1,0 +1,15 @@
+<ion-header-bar class="bar-dark">
+    <button class="button button-icon" ng-click="toggleMenu()">
+        <i class="icon ion-navicon"></i>
+    </button>
+    <h1 class="title">{{class.title}}</h1>
+</ion-header-bar>
+<ion-content>
+    <div class="list card">
+        <div class="item item-body">
+            <iframe ng-src="{{trustSrc(class.url)}}" frameborder="0" width="100%" allowfullscreen></iframe>
+            <p>{{class.notas | latinize}}</p>
+        </div>
+    </div>
+</ion-content>
+

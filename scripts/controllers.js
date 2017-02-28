@@ -1,18 +1,27 @@
 'use strict';
 angular.module('univtr')
 
-    .controller('VtrCtrl', ['$scope', 'cursos', function($scope, $timeout, $ionicModal, cursos, $ionicSideMenuDelegate) {
+.controller('SideNavCtrl', ['$scope', '$ionicSideMenuDelegate', function ($scope, $ionicSideMenuDelegate) {
+    $scope.toggleMenu = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
 
-        //obtener todos los cursos
-        $scope.cursos = cursos.getCourses();
+    $scope.close = function(){
+        $ionicSideMenuDelegate.toggleLeft(false);
+    };
+}])
 
-        //obtener todas las clases de un curso determinado (programa del curso)
-        $scope.program= cursos.getProgram(id);
+.controller('CourseCtrl', ['$scope', 'cursos', function ($scope, cursos) {
+    //obtener todos los cursos -- OK
+    $scope.cursos = cursos.getCourses();
+}])
+.controller('ProgramCtrl', ['$scope', 'cursos', '$stateParams', function ($scope, cursos, $stateParams) {
+    $scope.program = cursos.getProgram(parseInt($stateParams.id), 10);
+}])
+.controller('ClassCtrl',['$scope', 'cursos', '$stateParams', '$sce', function ($scope, cursos, $stateParams, $sce) {
+    $scope.class = cursos.getClases(parseInt($stateParams.id, 10), parseInt($stateParams.program, 10));
 
-        //obtener el detalle del curso, acceso al video incluido
-        $scope.class = cursos.getClases(id, video);
-
-        $scope.toggleCursos = function() {
-            $ionicSideMenuDelegate.toggleLeft();
-        };
-    }])
+    $scope.trustSrc = function(src) {
+        return $sce.trustAsResourceUrl(src);
+    }
+}]);

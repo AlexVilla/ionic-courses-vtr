@@ -1,0 +1,17 @@
+<div ng-controller="CourseCtrl">
+    <ion-header-bar class="bar-dark">
+        <button class="button button-icon" ng-click="toggleMenu()">
+            <i class="icon ion-navicon"></i>
+        </button>
+        <h1 class="title">Mis Cursos</h1>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="course in cursos" class="item item-thumbnail-left" ui-sref="app.program({id: course._id})">
+                <img ng-src="{{course.image}}">
+                <h2>{{course.name}}</h2>
+                <p>{{course.description}}</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</div>

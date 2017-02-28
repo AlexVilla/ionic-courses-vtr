@@ -2,82 +2,38 @@
 <html>
 <head>
 	<title>inicio</title>
+    <!-- build:css / styles/main.css -->
 	<link rel="stylesheet" type="text/css" href="css/ionic.min.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+    <!-- endbuild -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
-<body ng-app="univtr" ng-controller="VtrCtrl" ng-cloak>
-<ion-side-menus>
-
+<body ng-app="univtr" ng-cloak>
+<ion-side-menus ng-controller="SideNavCtrl">
     <!-- Center content -->
     <ion-side-menu-content>
-        <ion-header-bar class="bar-dark">
-            <button class="button button-icon" ng-click="toggleCursos()">
-                <i class="icon ion-navicon"></i>
-            </button>
-            <h1 class="title"></h1>
-            <!-- New Task button-->
-        </ion-header-bar>
-        <ion-content scroll="false">
-            <ion-list>
-                <ion-item ng-repeat="task in activeCursos.tasks">
-                    {{task.title}}
-                </ion-item>
-            </ion-list>
-        </ion-content>
+        <div ui-view="content"></div>
     </ion-side-menu-content>
 
 
     <!-- Left menu -->
-    <ion-side-menu side="left">
-        <ion-header-bar class="bar-dark">
-            <h1 class="title">Menú</h1>
-        </ion-header-bar>
-        <ion-content scroll="false">
-            <ion-list>
-                <ion-item>Perfil</ion-item>
-                <ion-item>Mis Cursos</ion-item>
-                <ion-item>Mis Calificaciones</ion-item>
-                <ion-item ng-repeat="project in projects" ng-click="selectProject(project, $index)" ng-class="{active: activeProject == project}">
-                    {{project.title}}
-                </ion-item>
-            </ion-list>
-        </ion-content>
-    </ion-side-menu>
+    <div ui-view="sidenav"></div>
+
 
 </ion-side-menus>
-
-
-<script id="new-task.html" type="text/ng-template">
-    <div class="modal">
-        <!-- Modal header bar -->
-        <ion-header-bar class="bar-secondary">
-            <h1 class="title">New Task</h1>
-            <button class="button button-clear button-positive" ng-click="closeNewTask()">Cancel</button>
-        </ion-header-bar>
-        <!-- Modal content area -->
-        <ion-content>
-            <form ng-submit="createTask(task)">
-                <div class="list">
-                    <label class="item item-input">
-                        <input type="text" placeholder="What do you need to do?" ng-model="task.title">
-                    </label>
-                </div>
-                <div class="padding">
-                    <button type="submit" class="button button-block button-positive">Create Task</button>
-                </div>
-            </form>
-        </ion-content>
-    </div>
-</script>
 
     <script src="phonegap.js"></script>
 <!--build:js / scripts/main.js -->
     <script src="scripts/ionic.min.js"></script>
     <script src="scripts/ionic.bundle.js"></script>
+    <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="../bower_components/angular-filter/dist/angular-filter.min.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/services.js"></script>
     <script src="scripts/controllers.js"></script>
+    <script src="scripts/utils.js"></script>
 <!-- endbuild -->
+
 </body>
 </html>
