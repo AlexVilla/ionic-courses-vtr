@@ -48,11 +48,11 @@ angular.module('univtr', ['ionic','ui.router','angular.filter'])
     $urlRouterProvider.otherwise('/login');
 })
 
-.run(function($ionicSideMenuDelegate, $ionicPlatform){
+.run(function($ionicSideMenuDelegate, $ionicPlatform, $state){
     $ionicPlatform.registerBackButtonAction(function (event) {
         if($ionicSideMenuDelegate.isOpen){
             $ionicSideMenuDelegate.toggleLeft(false);
-            if($state.current.name=="app.home"){
+            if($state.current.name=="app.courses"){
                 console.log("courses");
                 navigator.app.exitApp();
             }
