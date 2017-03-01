@@ -8,3 +8,15 @@
     text-overflow: initial !important;
     white-space: initial !important;
 }
+
+.popup-body{
+    text-align: center;
+}
+
+.button-wide, .login{
+    width: 90%;
+}
+
+.login{
+    margin: 0 auto !important;
+}

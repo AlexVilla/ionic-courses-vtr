@@ -4,7 +4,7 @@ angular.module('univtr', ['ionic','ui.router','angular.filter'])
 .config(function($stateProvider, $urlRouterProvider){
     $stateProvider
     .state('app',{
-        url:'/',
+        url:'/cursos',
         views:{
             'sidenav':{
                 templateUrl: 'views/sidenav.html'
@@ -34,6 +34,32 @@ angular.module('univtr', ['ionic','ui.router','angular.filter'])
                 controller: 'ClassCtrl'
             }
         }
+    })
+
+    .state('login', {
+        url: '/login',
+        views:{
+            'content@':{
+                templateUrl: 'views/login.html',
+                controller: 'LoginCtrl'
+            }
+        }
     });
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/login');
+})
+
+.run(function($ionicSideMenuDelegate, $ionicPlatform){
+    $ionicPlatform.registerBackButtonAction(function (event) {
+        if($ionicSideMenuDelegate.isOpen){
+            $ionicSideMenuDelegate.toggleLeft(false);
+            if($state.current.name=="app.home"){
+                console.log("courses");
+                navigator.app.exitApp();
+            }
+            else {
+                console.log("whatever")
+                navigator.app.backHistory();
+            }
+        }
+    }, 100);
 });

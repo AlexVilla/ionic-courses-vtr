@@ -1,0 +1,23 @@
+<ion-content scroll="false" style="margin: 30px auto;">
+    <div class="text-center">
+        <img src="images/univtr.png" alt="">
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <div class="list list-inset login">
+                <label class="item item-input">
+                    <input type="text" placeholder="Usuario Tango" ng-model="data.username">
+                </label>
+                <label class="item item-input ">
+                    <input type="password" placeholder="Contraseña" ng-model="data.password">
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 15px;">
+        <div class="col text-center">
+            <button class="button button-wide button-large button-assertive" ng-click="login()">Login</button>
+        </div>
+    </div>
+</ion-content>
+
