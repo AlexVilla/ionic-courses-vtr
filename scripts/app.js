@@ -52,7 +52,7 @@ angular.module('univtr', ['ionic','ui.router','angular.filter'])
     $ionicPlatform.registerBackButtonAction(function (event) {
         if($ionicSideMenuDelegate.isOpen){
             $ionicSideMenuDelegate.toggleLeft(false);
-            if($state.current.name=="app.courses"){
+            if($state.current.name=="app" || $state.current.name=="login"){
                 console.log("courses");
                 navigator.app.exitApp();
             }
