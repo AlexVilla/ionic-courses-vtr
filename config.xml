@@ -47,6 +47,8 @@
 </platform>
 
 <platform name="android">
+    <icon src="images/icon.png"/>
+    <splash src="images/splash.png"/>
     <!-- establece la posibilidad de mover la app a la sd-->
     <preference name="android-installLocation" value="auto" />
 </platform>
