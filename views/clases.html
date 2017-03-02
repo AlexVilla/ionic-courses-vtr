@@ -1,4 +1,4 @@
-<ion-header-bar class="bar-dark">
+<ion-header-bar class="bar-dark" align-title="center">
     <button class="button button-icon" ng-click="toggleMenu()">
         <i class="icon ion-navicon"></i>
     </button>
@@ -6,10 +6,22 @@
 </ion-header-bar>
 <ion-content>
     <ion-list>
+        <div class="item item-divider">
+            Cursos Pendientes
+        </div>
         <ion-item ng-repeat="class in program.videos" class="item item-thumbnail-left" ui-sref="app.program.class({program: program._id, id: class._id})">
             <img ng-src="{{class.image}}">
             <h2>{{class.title}}</h2>
             <p>{{class.description}}</p>
+        </ion-item>
+
+        <div class="item item-divider">
+            Evaluaciones Pendientes
+        </div>
+        <ion-item ng-repeat="ev in program.examen" class="item item-icon-left" ui-sref="app.program.exam({program: program._id, exam: ev._id})">
+            <i class="icon ion-ios-paper-outline"></i>
+            <h2>{{ev.titulo}}</h2>
+            <small>{{ev._id}}</small>
         </ion-item>
     </ion-list>
 </ion-content>

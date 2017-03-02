@@ -30,6 +30,30 @@ angular.module('univtr')
         return $sce.trustAsResourceUrl(src);
     }
 }])
+.controller('ProfileCtrl', ['$scope', 'cursos', function ($scope, cursos) {
+    $scope.cursos = cursos.getCourses();
+}])
+
+.controller('ExamCtrl', ['$scope', 'cursos', '$stateParams', '$ionicPopup', function ($scope, cursos, $stateParams, $ionicPopup) {
+    $scope.respuestas = {};
+    $scope.exam = cursos.getExam(parseInt($stateParams.id, 10), parseInt($stateParams.exam, 10));
+    $scope.evaluar = function(){
+        var alertPopup = $ionicPopup.confirm({
+            title: 'Enviado',
+            template: '¿Está seguro de enviar su examen?',
+            okText: 'Si',
+            cancelText: 'No'
+        });
+
+        alertPopup.then(function (res) {
+            if (res){
+                navigator.app.backHistory();
+            }else{
+                alertPopup.close()
+            }
+        });
+    }
+}])
 .controller('LoginCtrl', ['$scope', 'LoginService', '$state', '$ionicPopup', function($scope, LoginService, $state, $ionicPopup){
     $scope.data = {};
 

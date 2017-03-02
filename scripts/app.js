@@ -17,7 +17,7 @@ angular.module('univtr', ['ionic','ui.router','angular.filter'])
     })
 
     .state('app.program', {
-        url: 'program/:id',
+        url: '/program/:id',
         views:{
             'content@':{
                 templateUrl: 'views/clases.html',
@@ -27,11 +27,31 @@ angular.module('univtr', ['ionic','ui.router','angular.filter'])
     })
 
     .state('app.program.class', {
-        url: 'program/class/:id?:program',
+        url: '/class/:program',
         views:{
             'content@':{
                 templateUrl: 'views/classDetail.html',
                 controller: 'ClassCtrl'
+            }
+        }
+    })
+
+    .state('app.program.exam', {
+        url: '/exam/:exam',
+        views:{
+            'content@':{
+                templateUrl: 'views/examen.html',
+                controller: 'ExamCtrl'
+            }
+        }
+    })
+
+    .state('app.profile',{
+        url: '/profile',
+        views:{
+            'content@':{
+                templateUrl: 'views/profile.html',
+                controller: 'ProfileCtrl'
             }
         }
     })
